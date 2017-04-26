@@ -2,6 +2,12 @@
 
 Example of Music genre classification using CNN approach from (https://github.com/keunwoochoi/music-auto_tagging-keras) and GTZAN Dataset
 
+Dependencies:
+```
+keras==1.2.2
+tensorflow-gpu==1.0
+```
+
 To run ```train.py``` some dependencies are needed:
 
 - python-speech-features:
