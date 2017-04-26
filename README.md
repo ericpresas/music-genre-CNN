@@ -8,7 +8,7 @@ keras==1.2.2
 tensorflow-gpu==1.0
 ```
 
-To run ```train.py``` some dependencies are needed:
+To run ```train.py``` some extra tools are needed:
 
 - python-speech-features:
 ```
