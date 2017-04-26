@@ -18,3 +18,6 @@ cd music-genre-CNN
 mkdir data
 cp ~/path/to/download data
 ```
+ <p align="left">
+  <img src="metrics.png"/>
+</p>
