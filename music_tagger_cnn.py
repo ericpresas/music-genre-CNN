@@ -107,7 +107,7 @@ def MusicTaggerCNN(weights='msd', input_tensor=None,
     x = ELU()(x)
     x = MaxPooling2D(pool_size=(2, 4), name='pool3')(x)
 
-    
+
 
     # Output
     x = Flatten()(x)

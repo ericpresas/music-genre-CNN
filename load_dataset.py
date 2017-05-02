@@ -63,4 +63,7 @@ def load_labels(file_path):
 def load_audio(path):
     # Open audiofile from path
     samplerate, samples = wav.read(path)
-    return samples
+    longi = len(samples)
+    punt = int(round(longi / 2))
+    signal = samples[punt - 3 * samplerate: punt + 3 * samplerate]
+    return signal

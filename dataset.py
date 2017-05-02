@@ -21,6 +21,7 @@ class dataset:
         self.labels_train = []
         self.X_val = []
         self.labels_val = []
+        self.names = []
         self.labels = []
         self.root_path = path  # Ha de ser desde la carpeta on hi han totes les classes
         self.n_classes = n_classes
@@ -29,6 +30,7 @@ class dataset:
 
     def create(self):
         names = load_names_from_folders(self.root_path)
+        self.names = names
         filelist = []  # list of lists
         labels = []  # list of labels related to data list
         # Creation list of files for each class stored in a list
@@ -64,13 +66,7 @@ class dataset:
             for sample in class_sample:
                 x = []
                 mfcc_feat = mfcc(sample, 44100)
-                longi = len(mfcc_feat)
-                punt = round(longi / 2)
-                tmp_feat = mfcc_feat[punt - 2 * 44100:punt + 2 * 44100, :]
-                if(mfcc_feat[punt - 2*44100:punt + 2*44100, :].shape[0] > 560):
-                    x.append(tmp_feat[0:560, :])
-                else:
-                    x.append(mfcc_feat[punt - 2*44100:punt + 2*44100, :])
+                x.append(mfcc_feat)
                 x = np.array(x)
                 x = x.transpose(1, 2, 0)
                 if count < n_samples_train:
@@ -93,6 +89,7 @@ class dataset:
         self.X_train = self.X_train.transpose(0, 3, 2, 1)
         self.X_val = self.X_val.transpose(0, 3, 2, 1)
 
+        self.labels_val_list = self.labels_val
         # convert integers to dummy variables (i.e. one hot encoded)
         self.labels_train = np_utils.to_categorical(y_train, self.n_classes)
         self.labels_val = np_utils.to_categorical(y_val, self.n_classes)
