@@ -65,9 +65,11 @@ data = dataset('/imatge/epresas/music_genre/data/genres', 10, 100)
 data.create()
 print(data.X_train.shape)
 
-# Build the VGG model
+# Build the model
 input_tensor = Input(shape=(1, 18, 119))
 model =MusicTaggerCNN(input_tensor=input_tensor, include_top=False, weights=None)
+for layer in model.layers: 
+    layer.trainable = False
 last_layer = model.get_layer('pool3').output
 out = Flatten()(last_layer)
 out = Dense(128, activation='relu', name='fc2')(out)
